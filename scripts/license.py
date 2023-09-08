@@ -60,12 +60,7 @@ def decode_license(license):
 def main(args=None):
     expires = None
     company = None
-    seats = None
-    repos = None
     license = None
-    url = None
-    trial = True
-
     parser = argparse.ArgumentParser(prog='codecov key gen', add_help=True,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     subparsers = parser.add_subparsers(title='Commands')
@@ -92,6 +87,11 @@ def main(args=None):
     if getattr(pref, 'license', None):
         decode_license(pref.license[0])
     else:
+        seats = None
+        repos = None
+        url = None
+        trial = True
+
         create_license(pref.expires, pref.company, seats=pref.seats,
                        repos=pref.repos, url=pref.url, trial=pref.trial, pr=pref.pr)
 
